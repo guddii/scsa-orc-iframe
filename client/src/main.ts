@@ -8,6 +8,7 @@ import { SecurityChecks } from "scsa-lib-messaging/src/SecurityChecks";
 
 const recipients = new Map<string, Array<EndpointProperties>>();
 recipients.set(Applications.CATALOGUE.name, [Applications.CHECKOUT]);
+recipients.set(Applications.CHECKOUT.name, [Applications.ACCOUNT]);
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
