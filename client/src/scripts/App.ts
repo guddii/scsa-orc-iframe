@@ -11,6 +11,7 @@ export class App implements MessagingEndpoints {
 
     constructor(messagingSystem: MessagingSystem) {
         this.channel = messagingSystem.channel;
+        this.channel.subscribe(this, Applications.CATALOGUE.name);
         this.channel.subscribe(this, Applications.CHECKOUT.name);
     }
 
@@ -23,6 +24,10 @@ export class App implements MessagingEndpoints {
             this.channel.publish(
                 new Message({ hello: "Checkout, are you there?" }),
                 Applications.CHECKOUT.name
+            );
+            this.channel.publish(
+                new Message({ hello: "Catalogue, are you there?" }),
+                Applications.CATALOGUE.name
             );
         } catch (error) {
             console.warn(error);
