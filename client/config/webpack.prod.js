@@ -5,19 +5,20 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 require("dotenv").config({ silent: process.env.NODE_ENV === "production" });
 
-const { prodPath, srcPath } = require("./path");
-const { selectedPreprocessor } = require("./loader");
+const { dist, src } = require("./path");
+const { preprocessor } = require("./loader");
+const scs = "main";
 
 module.exports = {
     entry: {
-        main: path.resolve(__dirname, srcPath + "/main.ts")
+        main: path.resolve(__dirname, src + "/" + scs + ".ts")
     },
     resolve: {
         extensions: [".ts", ".js"]
     },
     output: {
-        path: path.resolve(__dirname, prodPath),
-        filename: "[name].[hash].js"
+        path: path.resolve(__dirname, dist),
+        filename: scs + ".[hash].js"
     },
     module: {
         rules: [
@@ -26,7 +27,7 @@ module.exports = {
                 use: "ts-loader"
             },
             {
-                test: selectedPreprocessor.fileRegexp,
+                test: preprocessor.fileRegexp,
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader
@@ -38,7 +39,7 @@ module.exports = {
                         loader: "postcss-loader"
                     },
                     {
-                        loader: selectedPreprocessor.loaderName
+                        loader: preprocessor.loaderName
                     }
                 ]
             }
@@ -51,15 +52,18 @@ module.exports = {
             HOST_CATALOGUE: "http://localhost:4020",
             HOST_CHECKOUT: "http://localhost:4030"
         }),
-        new CleanWebpackPlugin(path.resolve(__dirname, prodPath), {
+        new CleanWebpackPlugin(path.resolve(__dirname, dist), {
             root: process.cwd()
         }),
         new MiniCssExtractPlugin({
-            filename: "[name].[hash].css"
+            filename: scs + ".[hash].css"
         }),
         new HtmlWebpackPlugin({
+            inject: false,
+            hash: false,
             meta: { viewport: "width=device-width" },
-            template: path.resolve(__dirname, srcPath + "/index.html")
+            template: path.resolve(__dirname, src + "/index.html"),
+            filename: "index.html"
         })
     ]
 };

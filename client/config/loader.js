@@ -4,5 +4,5 @@ const stylus = {
 };
 
 module.exports = {
-    selectedPreprocessor: stylus
+    preprocessor: stylus
 };
