@@ -1,9 +1,8 @@
 import { MessagingSystemFactory } from "@scsa/messaging/src/MessagingSystem";
 import { EndpointProperties } from "@scsa/messaging/src/endpoints/Endpoint";
-import { Applications } from "./scripts/Constant";
+import { Applications } from "./Constants";
 
-import "./main.css";
-import { App } from "./scripts/App";
+import { App } from "./App";
 import { SecurityChecks } from "@scsa/messaging/src/SecurityChecks";
 
 const recipients = new Map<string, Array<EndpointProperties>>();

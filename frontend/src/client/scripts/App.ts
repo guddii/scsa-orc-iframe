@@ -3,7 +3,7 @@ import { EndpointProperties } from "@scsa/messaging/src/endpoints/Endpoint";
 import { Message } from "@scsa/messaging/src/constructors/Message";
 import { MessagingChannel } from "@scsa/messaging/src/types/MessagingChannel";
 import { MessagingSystem } from "@scsa/messaging/src/MessagingSystem";
-import { Applications } from "./Constant";
+import { Applications } from "./Constants";
 import { LoggerSingleton } from "@scsa/messaging/src/LoggerSingleton";
 
 export class App implements MessagingEndpoints {

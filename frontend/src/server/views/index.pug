@@ -1,0 +1,28 @@
+extends ../../../node_modules/@scsa/styling/src/server/views/main.pug
+
+block top
+    iframe(
+        src=APPLICATIONS.Account.options.href
+        title=APPLICATIONS.Account.options.text
+        data-endpoint="AccountApp"
+        sandbox="allow-scripts allow-same-origin"
+        class="IFrame IFrame--fullBleed"
+    )
+
+block left
+    iframe(
+        src=APPLICATIONS.Catalogue.options.href
+        title=APPLICATIONS.Catalogue.options.text
+        data-endpoint="CatalogueApp"
+        sandbox="allow-scripts allow-same-origin"
+        class="IFrame IFrame--fullBleed"
+    )
+
+block right
+    iframe(
+        src=APPLICATIONS.Checkout.options.href
+        title=APPLICATIONS.Checkout.options.text
+        data-endpoint="CheckoutApp"
+        sandbox="allow-scripts allow-same-origin"
+        class="IFrame IFrame--fullBleed"
+    )
