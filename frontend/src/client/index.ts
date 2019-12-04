@@ -1,8 +1,8 @@
 import "./index.css";
-import "./scripts"
+import "./scripts";
+
+
 
 // @ts-ignore
-if (module.hot) {
-    // @ts-ignore
-    module.hot.accept();
-}
+if (module.hot) module.hot.accept();
+

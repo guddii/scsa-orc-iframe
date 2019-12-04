@@ -1,10 +1,12 @@
-import { MessagingEndpoints } from "@scsa/messaging/src/types/MessagingEndpoints";
-import { EndpointProperties } from "@scsa/messaging/src/endpoints/Endpoint";
-import { Message } from "@scsa/messaging/src/constructors/Message";
-import { MessagingChannel } from "@scsa/messaging/src/types/MessagingChannel";
-import { MessagingSystem } from "@scsa/messaging/src/MessagingSystem";
+import {
+    MessagingEndpoints,
+    EndpointProperties,
+    Message,
+    MessagingChannel,
+    MessagingSystem,
+    LoggerSingleton
+} from "@scsa/messaging";
 import { Applications } from "./Constants";
-import { LoggerSingleton } from "@scsa/messaging/src/LoggerSingleton";
 
 export class App implements MessagingEndpoints {
     properties: EndpointProperties = Applications.MAIN;
@@ -12,7 +14,7 @@ export class App implements MessagingEndpoints {
 
     constructor(messagingSystem: MessagingSystem) {
         this.channel = messagingSystem.channel;
-        this.channel.subscribe(this, Applications.ACCOUNT.name);
+        this.channel.subscribe(this, Applications.SALES.name);
         this.channel.subscribe(this, Applications.CATALOGUE.name);
         this.channel.subscribe(this, Applications.CHECKOUT.name);
     }
@@ -30,7 +32,7 @@ export class App implements MessagingEndpoints {
         try {
             this.channel.publish(
                 new Message({ hello: "Account, are you there?" }),
-                Applications.ACCOUNT.name
+                Applications.SALES.name
             );
             this.channel.publish(
                 new Message({ hello: "Catalogue, are you there?" }),

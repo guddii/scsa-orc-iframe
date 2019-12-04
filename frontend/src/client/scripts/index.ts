@@ -1,13 +1,15 @@
-import { MessagingSystemFactory } from "@scsa/messaging/src/MessagingSystem";
-import { EndpointProperties } from "@scsa/messaging/src/endpoints/Endpoint";
-import { Applications } from "./Constants";
+import {
+    EndpointProperties,
+    MessagingSystemFactory,
+    SecurityChecks
+} from "@scsa/messaging";
 
+import { Applications } from "./Constants";
 import { App } from "./App";
-import { SecurityChecks } from "@scsa/messaging/src/SecurityChecks";
 
 const recipients = new Map<string, Array<EndpointProperties>>();
 recipients.set(Applications.CATALOGUE.name, [Applications.CHECKOUT]);
-recipients.set(Applications.CHECKOUT.name, [Applications.ACCOUNT]);
+recipients.set(Applications.CHECKOUT.name, [Applications.SALES]);
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
