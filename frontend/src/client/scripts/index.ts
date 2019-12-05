@@ -4,19 +4,15 @@ import {
     SecurityChecks
 } from "@scsa/messaging";
 
-import { Applications } from "./Constants";
 import { App } from "./App";
+import { cfg } from "../../config";
 
 const recipients = new Map<string, Array<EndpointProperties>>();
-recipients.set(Applications.CATALOGUE.name, [Applications.CHECKOUT]);
-recipients.set(Applications.CHECKOUT.name, [Applications.SALES]);
+recipients.set(cfg.APPLICATIONS.Catalogue.options.text, [cfg.APPLICATIONS.Checkout]);
+recipients.set(cfg.APPLICATIONS.Checkout.options.text, [cfg.APPLICATIONS.Sales]);
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-const secureContexts = Object.values(Applications).map(
-    (app: any) => app.url.host
-);
-const securityChecks = new SecurityChecks(secureContexts);
+const secure = Object.values(cfg.endpoints()).map((app: any) => app.options.url.host);
+const securityChecks = new SecurityChecks(secure);
 
 const messaging = MessagingSystemFactory.create(recipients, securityChecks);
 const endpoint = new App(messaging);
