@@ -2,27 +2,27 @@ extends ../../../node_modules/@scsa/styling/src/server/views/main.pug
 
 block top
     iframe(
-        src=APPLICATIONS.Sales.options.url
+        src=APPLICATIONS.Sales.options.url + "api/fragments"
         title=APPLICATIONS.Sales.options.text
         data-endpoint=APPLICATIONS.Sales.options.text
         sandbox="allow-scripts allow-same-origin"
-        class="IFrame IFrame--fullBleed"
+        class="Socket Socket--fullBleed"
     )
 
 block left
     iframe(
-        src=APPLICATIONS.Catalogue.options.url
+        src=APPLICATIONS.Catalogue.options.url + "api/fragments"
         title=APPLICATIONS.Catalogue.options.text
         data-endpoint=APPLICATIONS.Catalogue.options.text
         sandbox="allow-scripts allow-same-origin"
-        class="IFrame IFrame--fullBleed"
+        class="Socket Socket--fullBleed"
     )
 
 block right
     iframe(
-        src=APPLICATIONS.Checkout.options.url
+        src=APPLICATIONS.Checkout.options.url + "api/fragments"
         title=APPLICATIONS.Checkout.options.text
         data-endpoint=APPLICATIONS.Checkout.options.text
         sandbox="allow-scripts allow-same-origin"
-        class="IFrame IFrame--fullBleed"
+        class="Socket Socket--fullBleed"
     )
