@@ -1,28 +1,19 @@
 extends ../../../node_modules/@scsa/styling/src/server/views/main.pug
 
-block top
+mixin subsystem(application)
     iframe(
-        src=APPLICATIONS.Sales.options.url + "api/fragments"
-        title=APPLICATIONS.Sales.options.text
-        data-endpoint=APPLICATIONS.Sales.options.text
+        src=application.options.url + "api/fragments/iframe"
+        title=application.options.text
+        data-endpoint=application.options.text
         sandbox="allow-scripts allow-same-origin"
         class="Socket Socket--fullBleed"
     )
+
+block top
+    +subsystem(APPLICATIONS.Sales)
 
 block left
-    iframe(
-        src=APPLICATIONS.Catalogue.options.url + "api/fragments"
-        title=APPLICATIONS.Catalogue.options.text
-        data-endpoint=APPLICATIONS.Catalogue.options.text
-        sandbox="allow-scripts allow-same-origin"
-        class="Socket Socket--fullBleed"
-    )
+    +subsystem(APPLICATIONS.Catalogue)
 
 block right
-    iframe(
-        src=APPLICATIONS.Checkout.options.url + "api/fragments"
-        title=APPLICATIONS.Checkout.options.text
-        data-endpoint=APPLICATIONS.Checkout.options.text
-        sandbox="allow-scripts allow-same-origin"
-        class="Socket Socket--fullBleed"
-    )
+    +subsystem(APPLICATIONS.Checkout)
