@@ -1,8 +1,8 @@
-import { MessagingSystemFactory, SecurityChecks } from "@scsa/messaging";
+import { MessagingSystem, SecurityChecks } from "@scsa/messaging";
 
 import { App } from "./App";
 import { cfg } from "../../config";
 
 const securityChecks = new SecurityChecks(cfg.endpoints());
-const messaging = MessagingSystemFactory.create({ security: securityChecks });
+const messaging = new MessagingSystem({ security: securityChecks });
 new App(messaging);
