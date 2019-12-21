@@ -1,12 +1,12 @@
 import {
-    MessagingEndpoints,
-    MessagingChannel,
-    MessagingSystem,
-    Logger
+    IMessagingChannel,
+    IMessagingEndpoints,
+    Logger,
+    MessagingSystem
 } from "@scsa/messaging";
 
-export class App implements MessagingEndpoints {
-    channel: MessagingChannel;
+export class App implements IMessagingEndpoints {
+    public channel: IMessagingChannel;
     private logger: Logger;
 
     constructor(messagingSystem: MessagingSystem) {
@@ -15,7 +15,7 @@ export class App implements MessagingEndpoints {
         this.logger = new Logger();
     }
 
-    handleEndpoint(data: any) {
+    public handleEndpoint(data: any) {
         try {
             this.logger.write(data);
         } catch (error) {
