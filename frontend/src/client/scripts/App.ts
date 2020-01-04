@@ -1,17 +1,15 @@
 import {
-    IMessagingChannel,
     IMessagingEndpoints,
     Logger,
     MessagingSystem
 } from "@scsa/messaging";
 
 export class App implements IMessagingEndpoints {
-    public channel: IMessagingChannel;
+
     private logger: Logger;
 
     constructor(messagingSystem: MessagingSystem) {
-        this.channel = messagingSystem.options.channel;
-        this.channel.subscribe(this);
+        messagingSystem.observable.subscribe(this);
         this.logger = new Logger();
     }
 
