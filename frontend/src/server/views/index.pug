@@ -1,8 +1,8 @@
 extends ../../../node_modules/@scsa/styling/src/server/views/main.pug
 
-mixin subsystem(application)
+mixin subsystem(application, appendSrc)
     iframe(
-        src=application.options.url + "api/fragments/iframe"
+        src=application.options.url + "api/fragments/iframe" + appendSrc
         title=application.options.text
         data-endpoint=application.options.text
         sandbox="allow-scripts allow-same-origin"
@@ -10,10 +10,13 @@ mixin subsystem(application)
     )
 
 block top
-    +subsystem(APPLICATIONS.Sales)
+    +subsystem(APPLICATIONS.Sales, "/entry")
 
 block left
-    +subsystem(APPLICATIONS.Catalogue)
+    - const slotA = "/entry?slot=" + encodeURIComponent(APPLICATIONS.Checkout.options.url + "api/fragments/iframe/controls")
+    +subsystem(APPLICATIONS.Catalogue, slotA)
 
 block right
-    +subsystem(APPLICATIONS.Checkout)
+    - const innerSlotB = encodeURIComponent("?slot=" + APPLICATIONS.Checkout.options.url + "api/fragments/iframe/controls");
+    - const slotB = "?slot=" + encodeURIComponent(APPLICATIONS.Catalogue.options.url + "api/fragments/iframe/thin" + innerSlotB);
+    +subsystem(APPLICATIONS.Checkout, slotB)
